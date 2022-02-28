@@ -1,4 +1,4 @@
-document.getElementById('search-btn').addEventListener('click', function () {
+const loadSearchResult = () => {
     const searchInput = document.getElementById('search-input');
     const searchText = searchInput.value.toLowerCase();
 
@@ -9,7 +9,7 @@ document.getElementById('search-btn').addEventListener('click', function () {
         .then(res => res.json())
         .then(data => showSearchResult(data.data))
 
-})
+}
 
 const showSearchResult = (SearchResult) => {
     const noResult = document.getElementById('no-result');
@@ -31,6 +31,7 @@ const showSearchResult = (SearchResult) => {
 
     else {
         const needToShow = SearchResult.slice(0, 20)
+
         for (result of needToShow) {
 
             const newDiv = document.createElement('div');
@@ -42,7 +43,7 @@ const showSearchResult = (SearchResult) => {
             <h5 class="card-text">Brand Name: ${result.brand}</h5 >
         </div >
         <div class="card-footer ">
-        <button id="details-btn" class="btn btn-primary w-100">See more details</button>
+        <button onclick="loadSearchResult()" class="btn btn-primary w-100">See more details</button>
         </div>`
 
 
