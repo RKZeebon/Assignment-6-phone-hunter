@@ -41,10 +41,11 @@ const showSearchResult = (SearchResult) => {
             const newDiv = document.createElement('div');
             newDiv.classList.add('col');
 
-            newDiv.innerHTML = `<img src="${result.image}" class="card-img-top img-thumbnail" alt="..." style="width: 250px;">
+            newDiv.innerHTML = `
+           <div class="text-center"> <img src="${result.image}" class="card-img-top img-thumbnail" alt="..." style="width: 250px; height: 325px;"></div>
             <div class="card-body">
-            <h4 class="card-title">Phone Name: ${result.phone_name}</h4>
-            <h5 class="card-text">Brand Name: ${result.brand}</h5 ></div >
+            <h5 class="card-title">Phone Name: ${result.phone_name}</h5>
+            <p class="card-text"><b>Brand Name: ${result.brand}</b></p ></div >
             <div class="card-footer ">
             <button onclick="loaddetails('${result.slug}')" class="btn btn-primary w-100">See more details</button></div>`
 
@@ -81,24 +82,27 @@ const showTheDetails = (details) => {
     detailsContainer.textContent = '';
 
     const newDiv = document.createElement('div');
-    newDiv.classList.add('d-md-flex')
+    const classes = ['d-md-flex', 'justify-content-between']
+    newDiv.classList.add(...classes)
+
     newDiv.innerHTML = `
-    <div class="text-center mb-5">
+    <div class="text-center me-3 mb-5">
     <img src="${details.image}" alt="..." style="width: 400px;">
     </div>
-    <table class="table">
+    <table class="table table-hover table-fixed">
                 <tbody>
                     <tr>
-                        <td class="text-end align-middle"><b>Phone Name:</b></td>
-                        <td class="align-middle">${details.name}</td>
+                        <td class="text-end align-middle"><b>Item Name:</b></td>
+                        <td class="align-middle" colspan="2">${details.name}</td>
                     </tr>
                     <tr>
                         <td class="text-end align-middle"><b>Release Date:</b></td>
-                        <td class="align-middle">${details.releaseDate}</td>
+                        <td class="align-middle" colspan="2">${details.releaseDate}</td>
                     </tr>
+
                     <tr>
-                        <td class="text-end align-middle"><h4>Main Features: </h4></td>
-                        <td></td>
+                        <td class="text-end align-middle" rowspan="6"><h5>Main Features: </h5></td>
+                        
                     </tr>
                     <tr>
                         <td class="text-end align-middle"><b>Storage:</b></td>
@@ -117,8 +121,37 @@ const showTheDetails = (details) => {
                         <td class="align-middle">${details.mainFeatures.memory}</td>
                     </tr>
                     <tr>
-                        <td class="text-end align-middle"><h4>Sensors: </h4></td>
+                        <td class="text-end align-middle"><b>Sensors: </b></td>
                         <td class="align-middle">${sensorList}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="text-end align-middle" rowspan="7"><h5>Other Features: </h5></td>
+                    
+                    </tr>
+                    <tr>
+                        <td class="text-end align-middle"><b>WLAN:</b></td>
+                        <td class="align-middle">${details?.others?.WLAN}</td>
+                    </tr>
+                    <tr>
+                        <td class="text-end align-middle"><b>Bluetooth:</b></td>
+                        <td class="align-middle">${details?.others?.Bluetooth}</td>
+                    </tr>
+                    <tr>
+                        <td class="text-end align-middle"><b>GPS:</b></td>
+                        <td class="align-middle">${details?.others?.GPS}</td>
+                    </tr>
+                    <tr>
+                        <td class="text-end align-middle"><b>NFC:</b></td>
+                        <td class="align-middle">${details?.others?.NFC}</td>
+                    </tr>
+                    <tr>
+                        <td class="text-end align-middle"><b>Radio:</b></td>
+                        <td class="align-middle">${details?.others?.Radio}</td>
+                    </tr>
+                    <tr>
+                        <td class="text-end align-middle"><b>USB:</b></td>
+                        <td class="align-middle">${details?.others?.USB}</td>
                     </tr>
                 </tbody>
     </table>`
