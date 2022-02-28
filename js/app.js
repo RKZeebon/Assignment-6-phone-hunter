@@ -87,7 +87,7 @@ const showTheDetails = (details) => {
 
     newDiv.innerHTML = `
     <div class="text-center me-3 mb-5">
-    <img src="${details.image}" alt="..." style="width: 400px;">
+    <img src="${details.image}" alt="..." style="width: 350px;">
     </div>
     <table class="table table-hover table-fixed">
                 <tbody>
@@ -101,7 +101,7 @@ const showTheDetails = (details) => {
                     </tr>
 
                     <tr>
-                        <td class="text-end align-middle" rowspan="6"><h5>Main Features: </h5></td>
+                        <td class="text-end align-middle  text-nowrap" rowspan="6"><h5>Main Features: </h5></td>
                         
                     </tr>
                     <tr>
@@ -109,7 +109,7 @@ const showTheDetails = (details) => {
                         <td class="align-middle">${details.mainFeatures.storage}</td>
                     </tr>
                     <tr>
-                        <td class="text-end align-middle"><b>Display Size:</b></td>
+                        <td class="text-end align-middle  text-nowrap"><b>Display Size:</b></td>
                         <td class="align-middle">${details.mainFeatures.displaySize}</td>
                     </tr>
                     <tr>
@@ -126,7 +126,7 @@ const showTheDetails = (details) => {
                     </tr>
 
                     <tr>
-                        <td class="text-end align-middle" rowspan="7"><h5>Other Features: </h5></td>
+                        <td class="text-end align-middle text-nowrap" rowspan="7"><h5>Other Features: </h5></td>
                     
                     </tr>
                     <tr>
