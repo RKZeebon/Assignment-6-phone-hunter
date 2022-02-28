@@ -82,7 +82,7 @@ const showTheDetails = (details) => {
     detailsContainer.textContent = '';
 
     const newDiv = document.createElement('div');
-    const classes = ['d-md-flex', 'justify-content-between']
+    const classes = ['d-lg-flex', 'justify-content-between']
     newDiv.classList.add(...classes)
 
     newDiv.innerHTML = `
@@ -97,7 +97,7 @@ const showTheDetails = (details) => {
                     </tr>
                     <tr>
                         <td class="text-end align-middle"><b>Release Date:</b></td>
-                        <td class="align-middle" colspan="2">${details.releaseDate}</td>
+                        <td class="align-middle" colspan="2">${details.releaseDate || 'N/A'}</td>
                     </tr>
 
                     <tr>
@@ -131,27 +131,27 @@ const showTheDetails = (details) => {
                     </tr>
                     <tr>
                         <td class="text-end align-middle"><b>WLAN:</b></td>
-                        <td class="align-middle">${details?.others?.WLAN}</td>
+                        <td class="align-middle">${details?.others?.WLAN || 'N/A'}</td>
                     </tr>
                     <tr>
                         <td class="text-end align-middle"><b>Bluetooth:</b></td>
-                        <td class="align-middle">${details?.others?.Bluetooth}</td>
+                        <td class="align-middle">${details?.others?.Bluetooth || 'N/A'}</td>
                     </tr>
                     <tr>
                         <td class="text-end align-middle"><b>GPS:</b></td>
-                        <td class="align-middle">${details?.others?.GPS}</td>
+                        <td class="align-middle">${details?.others?.GPS || 'N/A'}</td>
                     </tr>
                     <tr>
                         <td class="text-end align-middle"><b>NFC:</b></td>
-                        <td class="align-middle">${details?.others?.NFC}</td>
+                        <td class="align-middle">${details?.others?.NFC || 'N/A'}</td>
                     </tr>
                     <tr>
                         <td class="text-end align-middle"><b>Radio:</b></td>
-                        <td class="align-middle">${details?.others?.Radio}</td>
+                        <td class="align-middle">${details?.others?.Radio || 'N/A'}</td>
                     </tr>
                     <tr>
                         <td class="text-end align-middle"><b>USB:</b></td>
-                        <td class="align-middle">${details?.others?.USB}</td>
+                        <td class="align-middle">${details?.others?.USB || 'N/A'}</td>
                     </tr>
                 </tbody>
     </table>`
