@@ -1,19 +1,23 @@
 const noResult = document.getElementById('no-result');
 const container = document.getElementById('cards-container');
 const detailsContainer = document.getElementById('details');
+const searchInput = document.getElementById('search-input');
 
 /* Functions for Search Result */
 const loadSearchResult = () => {
-    const searchInput = document.getElementById('search-input');
     const searchText = searchInput.value.toLowerCase();
 
-    const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
+    if (searchText == '') {
+        errorFunction();
+    }
+    else {
+        const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
 
 
-    fetch(url)
-        .then(res => res.json())
-        .then(data => showSearchResult(data.data))
-
+        fetch(url)
+            .then(res => res.json())
+            .then(data => showSearchResult(data.data))
+    }
 }
 
 const showSearchResult = (SearchResult) => {
@@ -24,18 +28,13 @@ const showSearchResult = (SearchResult) => {
 
 
     if (SearchResult < 1) {
-
-
-        const newElement = document.createElement('h1');
-        newElement.classList.add('text-center')
-        newElement.innerText = 'Sorry!! Nothing Found....'
-        noResult.appendChild(newElement);
-
+        errorFunction();
+        searchInput.value = '';
     }
 
 
     else {
-        const needToShow = SearchResult.slice(0, 20)
+        const needToShow = SearchResult.slice(0, 20);
 
         for (const result of needToShow) {
             const newDiv = document.createElement('div');
@@ -50,6 +49,7 @@ const showSearchResult = (SearchResult) => {
             <button onclick="loaddetails('${result.slug}')" class="btn btn-primary w-100">See more details</button></div>`
 
             container.appendChild(newDiv);
+            searchInput.value = '';
         }
     }
 }
@@ -72,18 +72,18 @@ const loaddetails = (getId) => {
 const showTheDetails = (details) => {
 
     /*     SENSOR work fine even if I don't use for loop. but I use this for loop to add space between two items.  */
+
     const sensorsList = details.mainFeatures.sensors;
     const sensorList = [];
     for (const sensor of sensorsList) {
         sensorList.push(" " + sensor);
     }
 
-
     detailsContainer.textContent = '';
 
     const newDiv = document.createElement('div');
-    const classes = ['d-lg-flex', 'justify-content-between']
-    newDiv.classList.add(...classes)
+    const classes = ['d-lg-flex', 'justify-content-between'];
+    newDiv.classList.add(...classes);
 
     newDiv.innerHTML = `
     <div class="text-center me-3 mb-5">
@@ -154,6 +154,13 @@ const showTheDetails = (details) => {
                         <td class="align-middle">${details?.others?.USB || 'N/A'}</td>
                     </tr>
                 </tbody>
-    </table>`
+    </table>`;
     detailsContainer.appendChild(newDiv);
+}
+
+const errorFunction = () => {
+    const newElement = document.createElement('h1');
+    newElement.classList.add('text-center');
+    newElement.innerText = 'Sorry!! Nothing Found....';
+    noResult.appendChild(newElement);
 }
