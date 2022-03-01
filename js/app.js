@@ -8,6 +8,9 @@ const loadSearchResult = () => {
     const searchText = searchInput.value.toLowerCase();
 
     if (searchText == '') {
+        noResult.textContent = '';
+        detailsContainer.textContent = '';
+        container.textContent = '';
         errorFunction();
     }
     else {
@@ -22,9 +25,9 @@ const loadSearchResult = () => {
 
 const showSearchResult = (SearchResult) => {
 
-    noResult.textContent = ""
+    noResult.textContent = '';
     detailsContainer.textContent = '';
-    container.textContent = ""
+    container.textContent = '';
 
 
     if (SearchResult < 1) {
